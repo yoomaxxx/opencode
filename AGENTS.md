@@ -14,3 +14,24 @@ When users ask about current events, real-time data, recent statistics, or infor
 4. Always cite sources when providing facts
 
 5. If results unclear, refine the query
+
+# Python Project Execution Rule
+
+When running Python commands in Python projects:
+
+1. Detect Python project:
+   - Check if `pyproject.toml` exists OR
+   - Check if `.venv/` or `venv/` directory exists
+
+2. For Python projects, use local Python in this order:
+   - Try `uv run python <command>` or `uv run <command>` first
+   - If uv unavailable, use `.venv/bin/python <command>` (or `venv/bin/python`)
+   - Use pip via `uv pip install <package>` or `.venv/bin/pip install <package>`
+
+3. For non-Python projects:
+   - Use global `python <command>`
+
+Examples:
+- `python script.py` → `uv run python script.py` or `.venv/bin/python script.py`
+- `python -m pytest` → `uv run pytest` or `.venv/bin/python -m pytest`
+- `pip install package` → `uv pip install package` or `.venv/bin/pip install package`
